@@ -30,7 +30,7 @@
                                 <label for="title" class="col-md-4 col-form-label text-md-end">Title</label>
     
                                 <div class="col-md-6">
-                                    <input id="title" type="text" class="form-control" name="title" value={{$task->title}} @error('title') is-invalid @enderror>
+                                    <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value={{$task->title}}>
                                 </div>
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">
@@ -43,7 +43,7 @@
                                 <label for="description" class="col-md-4 col-form-label text-md-end">Description</label>
     
                                 <div class="col-md-6">
-                                    <input id="description" type="text" class="form-control" name="description" value={{$task->description}} @error('description') is-invalid @enderror>
+                                    <input id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value={{$task->description}}>
                                 </div>
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
@@ -55,7 +55,7 @@
                             <div class="row mb-3">
                                 <label for="start_date" class="col-md-4 col-form-label text-md-end">Start Date</label>
                                 <div class="col-md-6">
-                                    <input id="start_date" type="text" class="form-control" name="start_date" value={{$task->start_date}} @error('start_date') is-invalid @enderror>
+                                    <input id="start_date" type="text" class="form-control @error('start_date') is-invalid @enderror" name="start_date" value={{$task->start_date}}>
                                 </div>
                                 @error('start_date')
                                     <span class="invalid-feedback" role="alert">
@@ -67,7 +67,7 @@
                             <div class="row mb-3">
                                 <label for="end_date" class="col-md-4 col-form-label text-md-end">Start Date</label>
                                 <div class="col-md-6">
-                                    <input id="end_date" type="text" class="form-control" name="end_date" value={{$task->end_date}} @error('end_date') is-invalid @enderror>
+                                    <input id="end_date" type="text" class="form-control @error('end_date') is-invalid @enderror" name="end_date" value={{$task->end_date}}>
                                 </div>
                                 @error('end_date')
                                     <span class="invalid-feedback" role="alert">
@@ -80,7 +80,7 @@
                                 <label for="logo" class="col-md-4 col-form-label text-md-end">Logo</label>
     
                                 <div class="col-md-6">
-                                    <input id="logo" type="file" class="form-control" name="logo" @error('logo') is-invalid @enderror>
+                                    <input id="logo" type="file" class="form-control  @error('logo') is-invalid @enderror" name="logo">
                                 </div>
                                 @error('logo')
                                     <span class="invalid-feedback" role="alert">
@@ -93,7 +93,7 @@
                                 <label for="owner_id" class="col-md-4 col-form-label text-md-end">Owner</label>
     
                                 <div class="col-md-6">
-                                    <select name="owner_id" id="owner_id" type="text" class="form-control" @error('owner_id') is-invalid @enderror>
+                                    <select name="owner_id" id="owner_id  @error('owner_id') is-invalid @enderror" type="text" class="form-control">
                                         @foreach ($owners as $owner)
                                             @if($owner->id == $task->owner_id)
                                                 <option value={{$owner->id}} selected>{{$owner->name}} {{$owner->surname}}</option>

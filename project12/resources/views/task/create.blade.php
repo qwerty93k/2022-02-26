@@ -30,7 +30,7 @@
                                 <label for="title" class="col-md-4 col-form-label text-md-end">Title</label>
     
                                 <div class="col-md-6">
-                                    <input id="title" type="text" class="form-control" name="title" @error('title') is-invalid @enderror>
+                                    <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title">
                                 </div>
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">
@@ -43,7 +43,7 @@
                                 <label for="description" class="col-md-4 col-form-label text-md-end">Description</label>
     
                                 <div class="col-md-6">
-                                    <textarea id="description" type="text" class="form-control" name="description" cols="30" rows="10" @error('description') is-invalid @enderror></textarea>
+                                    <textarea id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" cols="30" rows="10"></textarea>
                                 </div>
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
@@ -56,7 +56,7 @@
                                 <label for="start_date" class="col-md-4 col-form-label text-md-end">Start Date</label>
     
                                 <div class="col-md-6">
-                                    <input id="start_date" type="text" class="form-control" name="start_date" @error('start_date') is-invalid @enderror>
+                                    <input id="start_date" type="text" class="form-control @error('start_date') is-invalid @enderror" name="start_date">
                                 </div>
                                 @error('start_date')
                                     <span class="invalid-feedback" role="alert">
@@ -69,7 +69,7 @@
                                 <label for="end_date" class="col-md-4 col-form-label text-md-end">End Date</label>
     
                                 <div class="col-md-6">
-                                    <input id="end_date" type="text" class="form-control" name="end_date" @error('end_date') is-invalid @enderror>
+                                    <input id="end_date" type="text" class="form-control @error('end_date') is-invalid @enderror" name="end_date">
                                 </div>
                                 @error('end_date')
                                     <span class="invalid-feedback" role="alert">
@@ -82,7 +82,7 @@
                                 <label for="logo" class="col-md-4 col-form-label text-md-end">Logo</label>
     
                                 <div class="col-md-6">
-                                    <input id="logo" type="file" class="form-control" name="logo" @error('logo') is-invalid @enderror>
+                                    <input id="logo" type="file" class="form-control @error('logo') is-invalid @enderror" name="logo">
     
                                 </div>
                                 @error('logo')
@@ -96,7 +96,7 @@
                                 <label for="owner_id" class="col-md-4 col-form-label text-md-end">Owner</label>
     
                                 <div class="col-md-6">
-                                    <select name="owner_id" id="owner_id" type="text" class="form-control" @error('owner_id') is-invalid @enderror>
+                                    <select name="owner_id" id="owner_id" type="text" class="form-control @error('owner_id') is-invalid @enderror">
                                         @foreach ($owners as $owner)
                                             <option value={{$owner->id}}>{{$owner->name}} {{$owner->surname}}</option>
                                         @endforeach

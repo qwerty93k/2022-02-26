@@ -30,7 +30,7 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-end">Name</label>
     
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control" name="name" autofocus @error('name') is-invalid @enderror>
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" autofocus>
                                 </div>
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -43,7 +43,7 @@
                                 <label for="surname" class="col-md-4 col-form-label text-md-end">Surname</label>
     
                                 <div class="col-md-6">
-                                    <input id="surname" type="text" class="form-control" name="surname" autofocus @error('surname') is-invalid @enderror>
+                                    <input id="surname" type="text" class="form-control @error('surname') is-invalid @enderror" name="surname" autofocus>
                                 </div>
                                 @error('surname')
                                     <span class="invalid-feedback" role="alert">
@@ -56,7 +56,7 @@
                                 <label for="email" class="col-md-4 col-form-label text-md-end">Email</label>
     
                                 <div class="col-md-6">
-                                    <input id="email" type="text" class="form-control" name="email" autofocus @error('email') is-invalid @enderror>
+                                    <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" autofocus>
                                 </div>
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -69,7 +69,7 @@
                                 <label for="phone" class="col-md-4 col-form-label text-md-end">Phone</label>
     
                                 <div class="col-md-6">
-                                    <input id="phone" type="text" class="form-control" name="phone" autofocus @error('phone') is-invalid @enderror>
+                                    <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" autofocus>
                                 </div>
                                 @error('phone')
                                     <span class="invalid-feedback" role="alert">
