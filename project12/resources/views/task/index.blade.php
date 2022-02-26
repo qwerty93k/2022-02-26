@@ -19,13 +19,13 @@
                 <div class="card">
                         <table class="table table-striped">
                             <tr>
-                                <th>Id</th>
-                                <th>Title</th>
-                                <th>Description</th>
-                                <th>Start Date</th>
-                                <th>End Date</th>
+                                <th>@sortablelink('id','Id')</th>
+                                <th>@sortablelink('title','Title')</th>
+                                <th>@sortablelink('description','Description')</th>
+                                <th>@sortablelink('start_date','Start Date')</th>
+                                <th>@sortablelink('end_date','End Date')</th>
                                 <th>Logo</th>
-                                <th>Owner</th>
+                                <th>@sortablelink('owner_id','Owner')</th>
                                 <th>Action</th>
                             </tr>
                             @foreach ($tasks as $task)
