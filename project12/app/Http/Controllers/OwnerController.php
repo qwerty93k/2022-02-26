@@ -41,6 +41,14 @@ class OwnerController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            "name" => "required|alpha|min:2|max:15",
+            "surname" => "required|alpha|min:2|max:15",
+            "email" => "required|email:rfc,dns",
+            "phone" => ["required", 'regex:/(86|\+3706)\d{7}/'],
+        ]);
+
         $owner = new Owner;
 
         $owner->name = $request->name;
@@ -83,6 +91,13 @@ class OwnerController extends Controller
      */
     public function update(Request $request, Owner $owner)
     {
+        $request->validate([
+            "name" => "required|alpha|min:2|max:15",
+            "surname" => "required|alpha|min:2|max:15",
+            "email" => "required|email:rfc,dns",
+            "phone" => ["required", 'regex:/(86|\+3706)\d{7}/'],
+        ]);
+
         $owner->name = $request->name;
         $owner->surname = $request->surname;
         $owner->email = $request->email;

@@ -8,6 +8,21 @@
                     <div class="card-header">Create Owner</div>
     
                     <div class="card-body">
+                        {{--Errors--}}
+                            <div class="errors">
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>
+                                                    {{$error}}
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                            </div>
+                        {{--Form--}}
                         <form method="POST" action="{{route('owner.store')}}" >
                             @csrf
     
@@ -15,32 +30,52 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-end">Name</label>
     
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control" name="name" autofocus>
+                                    <input id="name" type="text" class="form-control" name="name" autofocus @error('name') is-invalid @enderror>
                                 </div>
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
                             <div class="row mb-3">
                                 <label for="surname" class="col-md-4 col-form-label text-md-end">Surname</label>
     
                                 <div class="col-md-6">
-                                    <input id="surname" type="text" class="form-control" name="surname" autofocus>
+                                    <input id="surname" type="text" class="form-control" name="surname" autofocus @error('surname') is-invalid @enderror>
                                 </div>
+                                @error('surname')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
                             <div class="row mb-3">
                                 <label for="email" class="col-md-4 col-form-label text-md-end">Email</label>
     
                                 <div class="col-md-6">
-                                    <input id="email" type="text" class="form-control" name="email" autofocus>
+                                    <input id="email" type="text" class="form-control" name="email" autofocus @error('email') is-invalid @enderror>
                                 </div>
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
                             <div class="row mb-3">
                                 <label for="phone" class="col-md-4 col-form-label text-md-end">Phone</label>
     
                                 <div class="col-md-6">
-                                    <input id="phone" type="text" class="form-control" name="phone" autofocus>
+                                    <input id="phone" type="text" class="form-control" name="phone" autofocus @error('phone') is-invalid @enderror>
                                 </div>
+                                @error('phone')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
                             {{--Buttons--}}

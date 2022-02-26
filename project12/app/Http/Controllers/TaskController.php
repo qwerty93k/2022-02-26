@@ -41,6 +41,16 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            "title" => "required|alpha|min:6|max:225",
+            "description" => "required|max:1500",
+            "start_date" => "required|date",
+            "end_date" => "required|date|after:start_date",
+            "logo" => "required",
+            "owner_id" => "required|gt:0"
+        ]);
+
         $task = new Task;
 
         $task->title = $request->title;
@@ -93,6 +103,16 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
+
+        $request->validate([
+            "title" => "required|alpha|min:6|max:225",
+            "description" => "required|max:1500",
+            "start_date" => "required|date",
+            "end_date" => "required|date|after:start_date",
+            "logo" => "required",
+            "owner_id" => "required|gt:0"
+        ]);
+
         $task->title = $request->title;
         $task->description = $request->description;
         $task->start_date = $request->start_date;

@@ -8,6 +8,21 @@
                     <div class="card-header">Edit Task</div>
     
                     <div class="card-body">
+                        {{--Errors--}}
+                        <div class="errors">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>
+                                                {{$error}}
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                        </div>
+                        {{--Form--}}
                         <form method="POST" action="{{route('task.update', [$task])}}" enctype="multipart/form-data">
                             @csrf
     
@@ -15,47 +30,70 @@
                                 <label for="title" class="col-md-4 col-form-label text-md-end">Title</label>
     
                                 <div class="col-md-6">
-                                    <input id="title" type="text" class="form-control" name="title" value={{$task->title}}>
+                                    <input id="title" type="text" class="form-control" name="title" value={{$task->title}} @error('title') is-invalid @enderror>
                                 </div>
+                                @error('title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
                             <div class="row mb-3">
                                 <label for="description" class="col-md-4 col-form-label text-md-end">Description</label>
     
                                 <div class="col-md-6">
-                                    <input id="description" type="text" class="form-control" name="description" value={{$task->description}}>
-    
+                                    <input id="description" type="text" class="form-control" name="description" value={{$task->description}} @error('description') is-invalid @enderror>
                                 </div>
+                                @error('description')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
                             <div class="row mb-3">
                                 <label for="start_date" class="col-md-4 col-form-label text-md-end">Start Date</label>
                                 <div class="col-md-6">
-                                    <input id="start_date" type="text" class="form-control" name="start_date" value={{$task->start_date}}>
+                                    <input id="start_date" type="text" class="form-control" name="start_date" value={{$task->start_date}} @error('start_date') is-invalid @enderror>
                                 </div>
+                                @error('start_date')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
                             <div class="row mb-3">
                                 <label for="end_date" class="col-md-4 col-form-label text-md-end">Start Date</label>
                                 <div class="col-md-6">
-                                    <input id="end_date" type="text" class="form-control" name="end_date" value={{$task->end_date}}>
+                                    <input id="end_date" type="text" class="form-control" name="end_date" value={{$task->end_date}} @error('end_date') is-invalid @enderror>
                                 </div>
+                                @error('end_date')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
                             <div class="row mb-3">
                                 <label for="logo" class="col-md-4 col-form-label text-md-end">Logo</label>
     
                                 <div class="col-md-6">
-                                    <input id="logo" type="file" class="form-control" name="logo">
-    
+                                    <input id="logo" type="file" class="form-control" name="logo" @error('logo') is-invalid @enderror>
                                 </div>
+                                @error('logo')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
                             <div class="row mb-3">
                                 <label for="owner_id" class="col-md-4 col-form-label text-md-end">Owner</label>
     
                                 <div class="col-md-6">
-                                    <select name="owner_id" id="owner_id" type="text" class="form-control">
+                                    <select name="owner_id" id="owner_id" type="text" class="form-control" @error('owner_id') is-invalid @enderror>
                                         @foreach ($owners as $owner)
                                             @if($owner->id == $task->owner_id)
                                                 <option value={{$owner->id}} selected>{{$owner->name}} {{$owner->surname}}</option>
@@ -65,6 +103,11 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                    @error('owner_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
                             <div class="row mb-0">
