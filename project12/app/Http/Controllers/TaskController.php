@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use App\Models\Owner;
+use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
@@ -15,7 +17,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        $tasks = Task::all();
+        return view('task.index', ['tasks' => $tasks]);
     }
 
     /**
@@ -25,7 +28,9 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        $tasks = Task::all();
+        $owners = Owner::all();
+        return view('task.create', ['tasks' => $tasks, 'owners' => $owners]);
     }
 
     /**
@@ -34,9 +39,23 @@ class TaskController extends Controller
      * @param  \App\Http\Requests\StoreTaskRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTaskRequest $request)
+    public function store(Request $request)
     {
-        //
+        $task = new Task;
+
+        $task->title = $request->title;
+        $task->description = $request->description;
+        $task->start_date = $request->start_date;
+        $task->end_date = $request->end_date;
+
+        $imagename = 'logo' . time() . '.' . $request->logo->extension();
+        $request->logo->move(public_path('images'), $imagename);
+        $task->logo = $imagename;
+
+        $task->owner_id = $request->owner_id;
+        $task->save();
+
+        return redirect()->route('task.index');
     }
 
     /**
@@ -45,9 +64,12 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function show(Task $task)
+    public function show(Task $task, Request $request)
     {
-        //
+        $owner_id = $request->owner_id;
+        $owners = Owner::where('id', '=', $owner_id)->get();
+
+        return view('task.show', ['task' => $task, 'owners' => $owners]);
     }
 
     /**
@@ -58,7 +80,8 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        $owners = Owner::all();
+        return view('task.edit', ['task' => $task, 'owners' => $owners]);
     }
 
     /**
@@ -68,9 +91,21 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTaskRequest $request, Task $task)
+    public function update(Request $request, Task $task)
     {
-        //
+        $task->title = $request->title;
+        $task->description = $request->description;
+        $task->start_date = $request->start_date;
+        $task->end_date = $request->end_date;
+
+        $imagename = 'logo' . time() . '.' . $request->logo->extension();
+        $request->logo->move(public_path('images'), $imagename);
+        $task->logo = $imagename;
+
+        $task->owner_id = $request->owner_id;
+        $task->save();
+
+        return redirect()->route('task.index');
     }
 
     /**
@@ -81,6 +116,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $task->delete();
+        return redirect()->route('task.index')->with('success_message', 'Successfully deleted');
     }
 }

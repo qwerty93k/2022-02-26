@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Owner;
 use App\Http\Requests\StoreOwnerRequest;
 use App\Http\Requests\UpdateOwnerRequest;
+use Illuminate\Http\Request;
 
 class OwnerController extends Controller
 {
@@ -15,7 +16,9 @@ class OwnerController extends Controller
      */
     public function index()
     {
-        //
+        $owners = Owner::all();
+
+        return view('owner.index', ['owners' => $owners]);
     }
 
     /**
@@ -25,7 +28,9 @@ class OwnerController extends Controller
      */
     public function create()
     {
-        //
+        $owners = Owner::all();
+
+        return view('owner.create', ['owners' => $owners]);
     }
 
     /**
@@ -34,9 +39,17 @@ class OwnerController extends Controller
      * @param  \App\Http\Requests\StoreOwnerRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreOwnerRequest $request)
+    public function store(Request $request)
     {
-        //
+        $owner = new Owner;
+
+        $owner->name = $request->name;
+        $owner->surname = $request->surname;
+        $owner->email = $request->email;
+        $owner->phone = $request->phone;
+        $owner->save();
+
+        return redirect()->route('owner.index');
     }
 
     /**
@@ -47,7 +60,7 @@ class OwnerController extends Controller
      */
     public function show(Owner $owner)
     {
-        //
+        return view('owner.show', ['owner' => $owner]);
     }
 
     /**
@@ -58,7 +71,7 @@ class OwnerController extends Controller
      */
     public function edit(Owner $owner)
     {
-        //
+        return view('owner.edit', ['owner' => $owner]);
     }
 
     /**
@@ -68,9 +81,15 @@ class OwnerController extends Controller
      * @param  \App\Models\Owner  $owner
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateOwnerRequest $request, Owner $owner)
+    public function update(Request $request, Owner $owner)
     {
-        //
+        $owner->name = $request->name;
+        $owner->surname = $request->surname;
+        $owner->email = $request->email;
+        $owner->phone = $request->phone;
+        $owner->save();
+
+        return redirect()->route('owner.index');
     }
 
     /**
@@ -81,6 +100,7 @@ class OwnerController extends Controller
      */
     public function destroy(Owner $owner)
     {
-        //
+        $owner->delete();
+        return redirect()->route('owner.index')->with('success_message', 'Successfully deleted');
     }
 }
