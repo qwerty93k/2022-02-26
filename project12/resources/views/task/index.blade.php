@@ -25,7 +25,7 @@
                                 <th>@sortablelink('start_date','Start Date')</th>
                                 <th>@sortablelink('end_date','End Date')</th>
                                 <th>Logo</th>
-                                <th>@sortablelink('owner_id','Owner')</th>
+                                <th>@sortablelink('taskOwner.name','Owner')</th>
                                 <th>Action</th>
                             </tr>
                             @foreach ($tasks as $task)

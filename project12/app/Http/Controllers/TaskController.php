@@ -18,6 +18,7 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::sortable()->get();
+        //dd($tasks);
         return view('task.index', ['tasks' => $tasks]);
     }
 
